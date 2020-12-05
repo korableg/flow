@@ -1,8 +1,8 @@
 package flow
 
 import (
-	"github.com/korableg/mini-gin/flow/errs"
-	"github.com/korableg/mini-gin/flow/hub"
+	"github.com/korableg/flow/errs"
+	"github.com/korableg/flow/hub"
 )
 
 func (m *Flow) NewHub(name string) (h *hub.Hub, err error) {

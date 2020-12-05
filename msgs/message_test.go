@@ -2,7 +2,7 @@ package msgs
 
 import (
 	"bytes"
-	"github.com/korableg/mini-gin/flow/repo/mockDB"
+	"github.com/korableg/flow/repo/mockDB"
 	"testing"
 )
 

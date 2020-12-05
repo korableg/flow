@@ -2,9 +2,9 @@ package node
 
 import (
 	"encoding/json"
-	"github.com/korableg/mini-gin/flow/errs"
-	"github.com/korableg/mini-gin/flow/msgs"
-	MockDB "github.com/korableg/mini-gin/flow/repo/mockDB"
+	"github.com/korableg/flow/errs"
+	"github.com/korableg/flow/msgs"
+	MockDB "github.com/korableg/flow/repo/mockDB"
 	"testing"
 )
 

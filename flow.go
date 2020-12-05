@@ -1,9 +1,9 @@
 package flow
 
 import (
-	"github.com/korableg/mini-gin/flow/hub"
-	"github.com/korableg/mini-gin/flow/node"
-	"github.com/korableg/mini-gin/flow/repo"
+	"github.com/korableg/flow/hub"
+	"github.com/korableg/flow/node"
+	"github.com/korableg/flow/repo"
 )
 
 type Flow struct {

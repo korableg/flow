@@ -2,9 +2,9 @@ package flow
 
 import (
 	"fmt"
-	"github.com/korableg/mini-gin/flow/errs"
-	"github.com/korableg/mini-gin/flow/msgs"
-	mockDB2 "github.com/korableg/mini-gin/flow/repo/mockDB"
+	"github.com/korableg/flow/errs"
+	"github.com/korableg/flow/msgs"
+	mockDB2 "github.com/korableg/flow/repo/mockDB"
 	"math/rand"
 	"strconv"
 	"testing"

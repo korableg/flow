@@ -1,8 +1,8 @@
 package flow
 
 import (
-	"github.com/korableg/mini-gin/flow/errs"
-	"github.com/korableg/mini-gin/flow/msgs"
+	"github.com/korableg/flow/errs"
+	"github.com/korableg/flow/msgs"
 )
 
 func (m *Flow) SendMessageToHub(from, to string, data []byte) (*msgs.Message, error) {

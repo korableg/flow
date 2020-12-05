@@ -1,7 +1,7 @@
 package node
 
 import (
-	"github.com/korableg/mini-gin/flow/repo"
+	"github.com/korableg/flow/repo"
 	"sync"
 )
 

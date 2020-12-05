@@ -4,7 +4,7 @@ import (
 	"encoding/binary"
 	"encoding/json"
 	"fmt"
-	"github.com/korableg/mini-gin/flow/repo"
+	"github.com/korableg/flow/repo"
 	"github.com/syndtr/goleveldb/leveldb"
 	"os"
 	"path/filepath"
