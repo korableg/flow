@@ -1,3 +1,4 @@
+// Package errs implements error constants and also error wrapper of standard interface
 package errs
 
 import (
@@ -17,10 +18,12 @@ var ErrNodeIsAlreadyExists = errors.New("node is already exists")
 var ErrNodeNameNotMatchedPattern = errors.New("the node name should be contain only letters, digits, ., -, _")
 var ErrPageNotFound = errors.New("page not found")
 
+// Error wrapper of standard error interface. This entity include json marshaling
 type Error struct {
 	error string
 }
 
+// New Creates Error
 func New(err error) *Error {
 	return &Error{error: err.Error()}
 }

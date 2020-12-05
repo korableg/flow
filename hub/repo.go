@@ -1,3 +1,5 @@
+// Package hub implements entities Hub and Repository.
+// Repository loads and saves collection of Hubs on disk
 package hub
 
 import (
@@ -11,7 +13,8 @@ type Repository struct {
 	db   repo.HubDB
 }
 
-func NewHubRepository(db repo.DB, nodes *node.Repository) *Repository {
+// NewRepository creates new Repository
+func NewRepository(db repo.DB, nodes *node.Repository) *Repository {
 
 	hr := new(Repository)
 	hr.hubs = new(sync.Map)
@@ -36,6 +39,7 @@ func NewHubRepository(db repo.DB, nodes *node.Repository) *Repository {
 	return hr
 }
 
+// Store hub on repository
 func (hr *Repository) Store(hub *Hub) error {
 	if hr.db != nil {
 		hubRepo := new(repo.Hub)
@@ -48,6 +52,7 @@ func (hr *Repository) Store(hub *Hub) error {
 	return nil
 }
 
+// Load Hub from repository by name
 func (hr *Repository) Load(name string) (*Hub, bool) {
 	if n, ok := hr.hubs.Load(name); ok {
 		return n.(*Hub), ok
@@ -55,6 +60,7 @@ func (hr *Repository) Load(name string) (*Hub, bool) {
 	return nil, false
 }
 
+// Slice returns slice of Hub
 func (hr *Repository) Slice() []*Hub {
 	hubs := make([]*Hub, 0, 20)
 	f := func(value *Hub) error { hubs = append(hubs, value); return nil }
@@ -62,6 +68,7 @@ func (hr *Repository) Slice() []*Hub {
 	return hubs
 }
 
+// Range iterates all the hubs and call a function for each one
 func (hr *Repository) Range(f func(hub *Hub) error) error {
 	var err error
 	rangeFunc := func(key, value interface{}) bool {
@@ -75,6 +82,7 @@ func (hr *Repository) Range(f func(hub *Hub) error) error {
 	return err
 }
 
+// Delete hub by name
 func (hr *Repository) Delete(name string) (err error) {
 
 	if hub, ok := hr.Load(name); ok {
@@ -92,6 +100,7 @@ func (hr *Repository) Delete(name string) (err error) {
 
 }
 
+// Close closes db
 func (hr *Repository) Close() error {
 	if hr.db == nil {
 		return nil

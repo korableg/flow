@@ -22,7 +22,7 @@ func New(db repo.DB) *Flow {
 	f := new(Flow)
 	f.db = db
 	f.nodes = node.NewNodeRepository(nodeDB)
-	f.hubs = hub.NewHubRepository(db, f.nodes)
+	f.hubs = hub.NewRepository(db, f.nodes)
 
 	return f
 
