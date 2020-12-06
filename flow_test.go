@@ -7,6 +7,7 @@ import (
 	mockDB2 "github.com/korableg/flow/repo/mockDB"
 	"math/rand"
 	"strconv"
+	"sync"
 	"testing"
 	"time"
 )
@@ -85,12 +86,16 @@ func TestFlow(t *testing.T) {
 	mSentChan3 := make(chan interface{})
 	mReceivedChan := make(chan []*msgs.Message)
 
+	mu := new(sync.Mutex)
+
 	funcSend := func(out chan interface{}) {
 		for i := 0; i < messageCount; i++ {
 			data := make([]byte, rand.Intn(1024*1024*10))
 			rand.Read(data)
+			mu.Lock()
 			mes, _ := m.SendMessageToHub(nodeProducer.Name(), hub.Name(), data)
 			mSent = append(mSent, mes)
+			mu.Unlock()
 		}
 		out <- 1
 	}
