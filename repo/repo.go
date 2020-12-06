@@ -1,3 +1,4 @@
+// Package repo implements interfaces for working with database
 package repo
 
 import "io"

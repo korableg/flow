@@ -1,3 +1,5 @@
+// Package msgs implements entities Message and MessageQueue
+// MessageQueue provides goroutine safe queue of Message with saves messages to disk
 package msgs
 
 import (
@@ -45,10 +47,12 @@ func NewMessageQueue(db repo.MQDB, careful bool) (*MessageQueue, error) {
 	return mq, nil
 }
 
+// IsCareful returns true if each message saves to disk
 func (mq *MessageQueue) IsCareful() bool {
 	return mq.careful
 }
 
+// Front returns front message on queue. If queue is empty it return nil.
 func (mq *MessageQueue) Front() (mes *Message) {
 	mq.mutex.Lock()
 	defer mq.mutex.Unlock()
@@ -61,6 +65,7 @@ func (mq *MessageQueue) Front() (mes *Message) {
 	return mes
 }
 
+// Push pushes message into queue
 func (mq *MessageQueue) Push(mes *Message) (err error) {
 	mq.mutex.Lock()
 	defer mq.mutex.Unlock()
@@ -81,6 +86,7 @@ func (mq *MessageQueue) Push(mes *Message) (err error) {
 	return
 }
 
+//RemoveFront removes front message from queue. If queue is empty it nothing do
 func (mq *MessageQueue) RemoveFront() (err error) {
 	mq.mutex.Lock()
 	defer mq.mutex.Unlock()
@@ -99,6 +105,7 @@ func (mq *MessageQueue) RemoveFront() (err error) {
 	return
 }
 
+// Len returns count of messages in queue
 func (mq *MessageQueue) Len() int {
 	mq.mutex.Lock()
 	defer mq.mutex.Unlock()
@@ -106,6 +113,7 @@ func (mq *MessageQueue) Len() int {
 	return mq.l.Len()
 }
 
+// Close closes db
 func (mq *MessageQueue) Close() error {
 	if mq.db == nil {
 		return nil
@@ -140,6 +148,7 @@ func (mq *MessageQueue) Close() error {
 	return mq.db.Close()
 }
 
+// DeleteDB deletes messages DB
 func (mq *MessageQueue) DeleteDB() error {
 
 	mq.mutex.Lock()

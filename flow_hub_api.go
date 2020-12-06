@@ -1,3 +1,4 @@
+// Package flow implements basic methods to working with framework
 package flow
 
 import (
@@ -5,6 +6,7 @@ import (
 	"github.com/korableg/flow/hub"
 )
 
+// NewHub creates new hub by name
 func (m *Flow) NewHub(name string) (h *hub.Hub, err error) {
 
 	if m.GetHub(name) != nil {
@@ -18,6 +20,7 @@ func (m *Flow) NewHub(name string) (h *hub.Hub, err error) {
 	return
 }
 
+// GetHub gets the hub by name
 func (m *Flow) GetHub(name string) (h *hub.Hub) {
 	if value, ok := m.hubs.Load(name); ok {
 		h = value
@@ -25,10 +28,12 @@ func (m *Flow) GetHub(name string) (h *hub.Hub) {
 	return
 }
 
+// GetAllHubs gets slice of hubs
 func (m *Flow) GetAllHubs() []*hub.Hub {
 	return m.hubs.Slice()
 }
 
+// AddNodeToHub adds node to hub by name
 func (m *Flow) AddNodeToHub(hubName, nodeName string) error {
 
 	h := m.GetHub(hubName)
@@ -45,6 +50,7 @@ func (m *Flow) AddNodeToHub(hubName, nodeName string) error {
 
 }
 
+// DeleteNodeFromHub removes node from hub by name
 func (m *Flow) DeleteNodeFromHub(hubName, nodeName string) error {
 
 	h := m.GetHub(hubName)
@@ -61,6 +67,7 @@ func (m *Flow) DeleteNodeFromHub(hubName, nodeName string) error {
 
 }
 
+// DeleteHub removes hub
 func (m *Flow) DeleteHub(name string) error {
 	return m.hubs.Delete(name)
 }

@@ -1,3 +1,4 @@
+// Package flow implements basic methods to working with framework
 package flow
 
 import (
@@ -5,6 +6,7 @@ import (
 	"github.com/korableg/flow/msgs"
 )
 
+// SendMessageToHub sends message from node to hub by name
 func (m *Flow) SendMessageToHub(from, to string, data []byte) (*msgs.Message, error) {
 
 	h := m.GetHub(to)
@@ -27,6 +29,7 @@ func (m *Flow) SendMessageToHub(from, to string, data []byte) (*msgs.Message, er
 
 }
 
+// SendMessageToNode sends message from node to node by name
 func (m *Flow) SendMessageToNode(from, to string, data []byte) (*msgs.Message, error) {
 
 	nodeTo := m.GetNode(to)
@@ -49,6 +52,7 @@ func (m *Flow) SendMessageToNode(from, to string, data []byte) (*msgs.Message, e
 
 }
 
+// GetMessage gets front message by node name
 func (m *Flow) GetMessage(nodeName string) (*msgs.Message, error) {
 	n := m.GetNode(nodeName)
 	if n == nil {
@@ -57,6 +61,7 @@ func (m *Flow) GetMessage(nodeName string) (*msgs.Message, error) {
 	return n.FrontMessage(), nil
 }
 
+// RemoveMessage removes front message from node by name
 func (m *Flow) RemoveMessage(nodeName string) error {
 	n := m.GetNode(nodeName)
 	if n == nil {

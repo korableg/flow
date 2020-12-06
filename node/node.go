@@ -1,3 +1,4 @@
+// Package node implements entities Node and Repository.
 package node
 
 import (

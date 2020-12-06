@@ -1,3 +1,4 @@
+// Package flow implements basic methods to working with framework
 package flow
 
 import (
@@ -6,6 +7,7 @@ import (
 	"github.com/korableg/flow/node"
 )
 
+// NewNode creates new Node by name. If careful is true when every messages will be saved to disk
 func (m *Flow) NewNode(name string, careful bool) (*node.Node, error) {
 
 	if nodeExists := m.GetNode(name); nodeExists != nil {
@@ -25,6 +27,7 @@ func (m *Flow) NewNode(name string, careful bool) (*node.Node, error) {
 
 }
 
+// GetNode gets node by name
 func (m *Flow) GetNode(name string) (n *node.Node) {
 	if value, ok := m.nodes.Load(name); ok {
 		n = value
@@ -32,10 +35,12 @@ func (m *Flow) GetNode(name string) (n *node.Node) {
 	return
 }
 
+// GetAllNodes gets slice of nodes
 func (m *Flow) GetAllNodes() []*node.Node {
 	return m.nodes.Slice()
 }
 
+// DeleteNode removes node by name
 func (m *Flow) DeleteNode(name string) error {
 	n := m.GetNode(name)
 	if n == nil {

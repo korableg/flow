@@ -1,3 +1,4 @@
+// Package flow implements basic methods to working with framework
 package flow
 
 import (
@@ -12,6 +13,7 @@ type Flow struct {
 	db    repo.DB
 }
 
+// New creates new instance Flow. If db == nil all data keeps only memory and lost after restart
 func New(db repo.DB) *Flow {
 
 	var nodeDB repo.NodeDB
@@ -28,6 +30,7 @@ func New(db repo.DB) *Flow {
 
 }
 
+// Close closes all dbs
 func (m *Flow) Close() error {
 	if err := m.nodes.Close(); err != nil {
 		return err
