@@ -3,6 +3,8 @@
 # Flow
 The simplest message queue framework
 
+RESTful implementation - https://github.com/korableg/Flow-Gin
+
 # Usage:
 ```go
 // Create database factory. Flow supports leveldb, but you can write your driver by implementing repo.DB interface
