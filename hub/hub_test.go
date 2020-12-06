@@ -2,10 +2,10 @@ package hub
 
 import (
 	"encoding/json"
-	"github.com/korableg/mini-gin/flow/errs"
-	"github.com/korableg/mini-gin/flow/msgs"
-	"github.com/korableg/mini-gin/flow/node"
-	"github.com/korableg/mini-gin/flow/repo/mockDB"
+	"github.com/korableg/flow/errs"
+	"github.com/korableg/flow/msgs"
+	"github.com/korableg/flow/node"
+	"github.com/korableg/flow/repo/mockDB"
 	"testing"
 )
 
